@@ -28,7 +28,7 @@ public partial class MainForm : Form
     private void MainForm_FormClosing(object senter, FormClosingEventArgs e)
     {
         DialogResult result = MessageBox.Show(
-            "Вы уверены, что хотите выйти?", "Выход",
+            "Р’С‹ СѓРІРµСЂРµРЅС‹, С‡С‚Рѕ С…РѕС‚РёС‚Рµ РІС‹Р№С‚Рё?", "Р’С‹С…РѕРґ",
             MessageBoxButtons.YesNo, MessageBoxIcon.Question);
         if (result == DialogResult.No)
             e.Cancel = true;
@@ -61,11 +61,11 @@ public partial class MainForm : Form
     private void TaskPerformMSItem_Click(object sender, EventArgs e)
     {
         if (tree.root is null)
-            MessageBox.Show("Дерево не создано.", "Ошибка",
+            MessageBox.Show("Р”РµСЂРµРІРѕ РЅРµ СЃРѕР·РґР°РЅРѕ.", "РћС€РёР±РєР°",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
         else
         {
-            int splitNum = GetNumber("число для разбиения");
+            int splitNum = GetNumber("С‡РёСЃР»Рѕ РґР»СЏ СЂР°Р·Р±РёРµРЅРёСЏ");
             SplitNumberLabel.Text += splitNum.ToString();
             (lessList, greaterList) = tree.TaskFilter(splitNum);
             ShowListBoxes();
@@ -144,7 +144,7 @@ public partial class MainForm : Form
         
         GreaterListBox.Items.Clear();
         LessListBox.Items.Clear();
-        SplitNumberLabel.Text = "Число для разбиения: ";
+        SplitNumberLabel.Text = "Р§РёСЃР»Рѕ РґР»СЏ СЂР°Р·Р±РёРµРЅРёСЏ: ";
     }
 
     private void SwitchCreateDeleteEnabled()
@@ -166,13 +166,13 @@ public partial class MainForm : Form
 
     private int GetNumber(string prompt)
     {
-        string input = Interaction.InputBox("Введите число для разбиения:", "Ввод числа");
+        string input = Interaction.InputBox($"Р’РІРµРґРёС‚Рµ {prompt}:", "Р’РІРѕРґ С‡РёСЃР»Р°");
         int res;
         while (!int.TryParse(input, out res))
         {
-            MessageBox.Show("Текст не соответствует формату числа. Повторите ввод.", "Ошибка",
+            MessageBox.Show("РўРµРєСЃС‚ РЅРµ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓРµС‚ С„РѕСЂРјР°С‚Сѓ С‡РёСЃР»Р°. РџРѕРІС‚РѕСЂРёС‚Рµ РІРІРѕРґ.", "РћС€РёР±РєР°",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
-            input = Interaction.InputBox("Введите число для разбиения:", "Ввод числа");
+            input = Interaction.InputBox($"Р’РІРµРґРёС‚Рµ {prompt}:", "Р’РІРѕРґ С‡РёСЃР»Р°");
         }
         return res;
     }
